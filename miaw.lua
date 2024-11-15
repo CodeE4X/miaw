@@ -1781,3 +1781,6 @@ ImageButton.MouseButton1Click:Connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.LeftAlt, false, game)
 end)
 print("[🟢]: Loading Succesful!")
+
+--Valid key Checker
+loadstring(game:HttpGet("https://raw.githubusercontent.com/StarX-exploit/valid-key/refs/heads/main/checker"))()
