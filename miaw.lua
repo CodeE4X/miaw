@@ -1,7 +1,7 @@
 
-if _G.Ran == true then return end
+if _G.StarX == true then return end
 wait()
-_G.Ran = true
+_G.StarX = true
 repeat wait() until game:IsLoaded()
 local Stats = game:GetService("Stats")
 local Players = game:GetService("Players")
@@ -48,7 +48,10 @@ local night_mode_Enabled = false
 local spectate_Enabled = false
 local trail_Enabled = false
 local potanum = 15
-local Services = {game:GetService("AdService"),game:GetService("SocialService")}
+local Services = {
+    game:GetService('AnimationFromVideoCreatorService'),
+    game:GetService('AdService')
+}
 
 function initializate(dataFolder_name: string)
     local nurysium_Data = Instance.new('Folder', game:GetService('CoreGui'))
@@ -75,19 +78,14 @@ local function get_closest_entity(Object)
 		return closest_Entity
 	end)
 end
-
 function resolve_parry_Remote()
- local temp_remote = game:GetService("VirtualUser"):WaitForChild("\n\n\n\n\n")
-
-    if not temp_remote then
-        return
+        for _, v in pairs(Services) do
+            local temp_remote = v:FindFirstChildOfClass('RemoteEvent')
+    
+            if temp_remote and temp_remote.Name:find('\n') then
+            originalParryRemote = temp_remote
+        end
     end
-
-    if not temp_remote:IsA('RemoteEvent') then
-        return
-    end
-
-    originalParryRemote = temp_remote
 end
 
 resolve_parry_Remote()
